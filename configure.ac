@@ -29,5 +29,5 @@ PKG_CHECK_MODULES(K2000, [gtk+-3.0 >= 2.90.3 webkit2gtk-3.0 webkit2gtk-web-exten
 AC_OUTPUT([
 Makefile
 src/Makefile
-
+src/kextension/Makefile
 ])

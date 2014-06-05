@@ -32,17 +32,19 @@ G_DEFINE_TYPE (K2000, k2000, GTK_TYPE_APPLICATION);
 
 
 
-/* Webkit Web View */
+/* Webkit Web View
+ * give to the web view the extension directory from the Makefile */
 static GtkWidget *
 k2000_new_view ()
 {
-   gchar *html = "<html><body contentEditable='true'>Toto</body></html>";
+   gchar *html = "<html><body><textarea>Toto</textarea></body></html>";
    WebKitWebView *v;
 
-  v = webkit_web_view_new ();
+  v = WEBKIT_WEB_VIEW (webkit_web_view_new ());
   webkit_web_view_load_html (v, html, NULL);
-    return v;
+  return GTK_WIDGET (v);
 }
+
 
 
 /* Create a new window loading a file */
@@ -57,8 +59,8 @@ k2000_new_window (GApplication *app,
 
     view = k2000_new_view ();
     gtk_container_add (GTK_CONTAINER (window), view);
-    
-	
+
+
     gtk_window_set_application (GTK_WINDOW (window), GTK_APPLICATION (app));
     if (file != NULL)
     {
@@ -91,6 +93,9 @@ k2000_open (GApplication  *application,
 static void
 k2000_init (K2000 *object)
 {
+  g_warning ("%s", PACKAGE_WEB_EXTENSIONS_DIR);
+  webkit_web_context_set_web_extensions_directory (webkit_web_context_get_default(),
+                                                   PACKAGE_WEB_EXTENSIONS_DIR);
 }
 
 static void

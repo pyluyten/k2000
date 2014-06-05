@@ -1,13 +1,11 @@
-## Process this file with automake to produce Makefile.in
 
-## Created by Anjuta
-
-
+SUBDIRS = kextension
 
 AM_CPPFLAGS = \
 	-DPACKAGE_LOCALE_DIR=\""$(localedir)"\" \
 	-DPACKAGE_SRC_DIR=\""$(srcdir)"\" \
 	-DPACKAGE_DATA_DIR=\""$(pkgdatadir)"\" \
+        -DPACKAGE_WEB_EXTENSIONS_DIR=\""$(libdir)/k2000/web-extension"\" \
 	$(K2000_CFLAGS)
 
 AM_CFLAGS =\
